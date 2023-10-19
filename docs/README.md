@@ -1,4 +1,4 @@
-# Description of function:
+# Discription of function:
 ## Circle:
     import math
 
