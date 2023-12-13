@@ -1,43 +1,29 @@
+import math
+
 def area(a, h): 
-'''Принимает число a и число h, возвращает среднее геометрическое чисел а и b'''
     return a * h / 2 
 
-def perimeter(a, b, c): 
-'''Принимает число a, число b и число с, возвращает сумму чисел a,b,c'''
+def perimeter(a, b, c):
     return a + b + c 
-a = 2
-h = 3
-b = 4
-c = 5 
-print(area(a,h))
-print(perimeter(a,b,c))
 
 import unittest
 
-def area(a, h):
-    '''Принимает число a и число h, возвращает среднее геометрическое чисел а и b'''
-    return a * h / 2
+class Test_Functions_Triangle(unittest.TestCase):
 
-def perimeter(a, b, c):
-    '''Принимает число a, число b и число c, возвращает сумму чисел a, b, c'''
-    return a + b + c
+    def test_area(self):
+        self.assertAlmostEqual(area(-3, 4), -6)
+        self.assertEqual(area(0, 4), 0)
+        self.assertAlmostEqual(area(5, 6.5), 16.25)
 
-class Test_Geometry_Calculation(unittest.TestCase):
+    def test_perimeter(self):
+        self.assertEqual(perimeter(3.5, 4.5, 5), 13)
+        self.assertEqual(perimeter(0, 4, 5), 9)
+        self.assertEqual(perimeter(-5, 6, 7), 8)
 
-    def test_perimeter_calculation(self):
-        self.assertEqual(perimeter(4, 5, 6), 15)
-        self.assertEqual(perimeter(0, 5, 10), 15)
-        self.assertEqual(perimeter(-4, 5, 3), 4)
-
-    def test_area_calculation(self):
-        self.assertEqual(area(4, 6), 12)
-        self.assertEqual(area(0, 5), 0)
-        self.assertEqual(area(-4, 5), -10)
-    
-        
-    def test_negative_digits(self):
-        self.assertEqual(area(-4, 5), -10)
-        self.assertEqual(perimeter(-4, 5, 3), 4)
+    def test_invalid_input(self):
+        with self.assertRaises(TypeError):
+            area('a', 'b')
+            perimeter('a', 'b', 'c')
 
 if __name__ == '__main__':
     unittest.main()

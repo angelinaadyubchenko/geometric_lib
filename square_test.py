@@ -1,41 +1,30 @@
 import math
-def area(a):
-''Принимает число a, возвращает квадрат числа а'''
+
+def area(a): 
     return a * a
 
 
 def perimeter(a):
-'''Принимает число a, возвращает число a умноженное на 4'''
     return 4 * a
-a = 2
-print(area(a))
-print(perimeter(a))
 
 import unittest
 
-def area(a):
-    '''Принимает число a, возвращает квадрат числа а'''
-    return a * a
+class Test_Functions_Square(unittest.TestCase):
 
-def perimeter(a):
-    '''Принимает число a, возвращает число a умноженное на 4'''
-    return 4 * a
-
-class Test_Square_Calculation(unittest.TestCase):
-
-     def test_perimeter_calculation(self):
-        self.assertEqual(perimeter(4), 16)
-        self.assertEqual(perimeter(0), 0)
-        self.assertEqual(perimeter(-4), -16)
-    
-    def test_area_calculation(self):
-        self.assertEqual(area(4), 16)
+    def test_area(self):
+        self.assertEqual(area(-3), 9)
         self.assertEqual(area(0), 0)
-        self.assertEqual(area(-4), 16)
-        
-    def test_negative_digits(self):
-        self.assertEqual(area(-4), 16)
-        self.assertEqual(perimeter(-4), -16)
+        self.assertAlmostEqual(area(2.5), 6.25)
+
+    def test_perimeter(self):
+        self.assertEqual(perimeter(-3), -12)
+        self.assertEqual(perimeter(0), 0)
+        self.assertAlmostEqual(perimeter(2.5), 10.0)
+
+    def test_invalid_input(self):
+        with self.assertRaises(TypeError):
+            area('a')
+            perimeter('b')
 
 if __name__ == '__main__':
     unittest.main()
